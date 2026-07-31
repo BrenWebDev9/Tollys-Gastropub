@@ -19,20 +19,20 @@
         }
     </style>
 </head>
-<body class="bg-zinc-950 text-zinc-100 font-sans-custom antialiased selection:bg-amber-500 selection:text-zinc-950">
+<body class="bg-zinc-950 text-zinc-100 font-sans-custom antialiased selection:bg-amber-500 selection:text-zinc-950 overflow-x-hidden">
 
     <!-- Header / Navigation -->
     <header class="fixed w-full z-50 bg-zinc-950/90 backdrop-blur-md border-b border-zinc-800/80">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <a href="#" class="flex items-center gap-3 group">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-2 sm:gap-3 group">
                 <!-- Crest Image with Fallback -->
                 <img 
                     src="./photos/crest.jpg" 
                     onerror="this.onerror=null; this.src='https://placehold.co/100x100/18181b/d4af37?text=Tolly%27s';" 
                     alt="Tolly's Crest" 
-                    class="h-10 w-auto object-contain transition-transform group-hover:scale-105"
+                    class="h-8 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105"
                 >
-                <span class="font-serif-custom text-xl tracking-wider text-amber-400 font-bold">TOLLY'S</span>
+                <span class="font-serif-custom text-lg sm:text-xl tracking-wider text-amber-400 font-bold">TOLLY'S</span>
             </a>
             
             <nav class="hidden md:flex items-center gap-8 font-medium text-sm tracking-wide">
@@ -42,38 +42,38 @@
                 <a href="#contact" class="hover:text-amber-400 transition-colors">CONTACT</a>
             </nav>
 
-            <a href="#menu" class="bg-amber-500 hover:bg-amber-400 text-zinc-950 font-bold px-5 py-2.5 rounded-full text-sm transition-all shadow-lg shadow-amber-500/10">
+            <a href="#menu" class="bg-amber-500 hover:bg-amber-400 text-zinc-950 font-bold px-4 py-2 sm:px-5 sm:py-2.5 rounded-full text-xs sm:text-sm transition-all shadow-lg shadow-amber-500/10">
                 View Menu
             </a>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+    <section class="relative min-h-[100dvh] flex items-center justify-center pt-16 sm:pt-20 overflow-hidden">
         <!-- Background Image with .jfif handling and dynamic fallback -->
         <div class="absolute inset-0 z-0">
             <img 
                 src="./photos/tollys.jfif" 
                 onerror="this.onerror=null; this.src='https://placehold.co/1920x1080/09090b/d4af37?text=Tolly%27s+Bar+%26+Grill';" 
                 alt="Tolly's Exterior" 
-                class="w-full h-full object-cover brightness-40 contrast-110"
+                class="w-full h-full object-cover object-center brightness-40 contrast-110"
             >
             <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/60 to-transparent"></div>
         </div>
 
-        <div class="relative z-10 max-w-4xl mx-auto text-center px-4 py-24">
-            <p class="text-amber-400 font-semibold tracking-widest text-sm uppercase mb-4">Welcome To</p>
-            <h1 class="font-serif-custom text-5xl sm:text-7xl font-extrabold tracking-tight text-white mb-6">
+        <div class="relative z-10 max-w-4xl mx-auto text-center px-4 py-16 sm:py-24">
+            <p class="text-amber-400 font-semibold tracking-widest text-xs sm:text-sm uppercase mb-3 sm:mb-4">Welcome To</p>
+            <h1 class="font-serif-custom text-3xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white mb-4 sm:mb-6 leading-tight">
                 TOLLY'S BAR & GRILL
             </h1>
-            <p class="text-lg sm:text-xl text-zinc-300 max-w-2xl mx-auto mb-10 font-light leading-relaxed">
+            <p class="text-base sm:text-xl text-zinc-300 max-w-2xl mx-auto mb-8 sm:mb-10 font-light leading-relaxed">
                 Great drinks, fresh food, and good times. Your favorite local neighborhood spot.
             </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#specials" class="bg-amber-500 hover:bg-amber-400 text-zinc-950 font-bold px-8 py-3.5 rounded-full transition-all shadow-lg shadow-amber-500/20">
+            <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center w-full max-w-xs mx-auto sm:max-w-none">
+                <a href="#specials" class="bg-amber-500 hover:bg-amber-400 text-zinc-950 font-bold px-6 sm:px-8 py-3 sm:py-3.5 rounded-full text-sm sm:text-base transition-all shadow-lg shadow-amber-500/20 text-center">
                     Today's Specials
                 </a>
-                <a href="#contact" class="border border-zinc-700 hover:border-amber-400 hover:text-amber-400 text-zinc-300 font-semibold px-8 py-3.5 rounded-full transition-all backdrop-blur-sm">
+                <a href="#contact" class="border border-zinc-700 hover:border-amber-400 hover:text-amber-400 text-zinc-300 font-semibold px-6 sm:px-8 py-3 sm:py-3.5 rounded-full text-sm sm:text-base transition-all backdrop-blur-sm text-center">
                     Find Us
                 </a>
             </div>
@@ -81,18 +81,18 @@
     </section>
 
     <!-- Daily Specials Section -->
-    <section id="specials" class="py-24 bg-zinc-900/50 border-y border-zinc-800/50">
+    <section id="specials" class="py-16 sm:py-24 bg-zinc-900/50 border-y border-zinc-800/50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
                 <div>
-                    <span class="text-amber-400 font-semibold tracking-widest text-sm uppercase">Featured</span>
-                    <h2 class="font-serif-custom text-3xl sm:text-4xl font-bold text-white mt-2 mb-6">
+                    <span class="text-amber-400 font-semibold tracking-widest text-xs sm:text-sm uppercase">Featured</span>
+                    <h2 class="font-serif-custom text-2xl sm:text-4xl font-bold text-white mt-1 sm:mt-2 mb-4 sm:mb-6">
                         Daily Food & Drink Specials
                     </h2>
-                    <p class="text-zinc-400 leading-relaxed mb-6">
+                    <p class="text-zinc-400 text-sm sm:text-base leading-relaxed mb-6">
                         Stop in every day of the week to enjoy our rotating kitchen features and drink discounts. From loaded burgers to cold draft beers, we've got something for everyone.
                     </p>
-                    <ul class="space-y-4 text-zinc-300">
+                    <ul class="space-y-3 sm:space-y-4 text-zinc-300 text-sm sm:text-base">
                         <li class="flex items-center gap-3">
                             <i class="fa-solid fa-check text-amber-400"></i>
                             <span>Freshly prepared daily features</span>
@@ -108,7 +108,7 @@
                     </ul>
                 </div>
                 
-                <div class="relative rounded-2xl overflow-hidden border border-zinc-800 shadow-2xl">
+                <div class="relative rounded-xl sm:rounded-2xl overflow-hidden border border-zinc-800 shadow-2xl">
                     <!-- Special Image with Fallback -->
                     <img 
                         src="./photos/special.jpg" 
@@ -123,8 +123,8 @@
     </section>
 
     <!-- Footer -->
-    <footer id="contact" class="bg-zinc-950 py-12 border-t border-zinc-900">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-zinc-500 text-sm">
+    <footer id="contact" class="bg-zinc-950 py-8 sm:py-12 border-t border-zinc-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-zinc-500 text-xs sm:text-sm">
             <p>&copy; Tolly's Bar & Grill. All rights reserved.</p>
         </div>
     </footer>
