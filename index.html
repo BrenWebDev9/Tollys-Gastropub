@@ -1,133 +1,453 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tolly's Bar & Grill</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Montserrat:wght@300;400;600&display=swap');
-        
-        .font-serif-custom {
-            font-family: 'Cinzel', serif;
-        }
-        .font-sans-custom {
-            font-family: 'Montserrat', sans-serif;
-        }
-    </style>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tolly's Gastropub | Greenville, OH</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: { colors: { pubGold: '#d4af37', pubGoldHover: '#c49f27', pubRed: '#990000', pubDark: '#0a0a0c', pubCard: '#141418' }, boxShadow: { 'gold-glow': '0 0 20px rgba(212, 175, 55, 0.3)' } } }
+    }
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 </head>
-<body class="bg-zinc-950 text-zinc-100 font-sans-custom antialiased selection:bg-amber-500 selection:text-zinc-950 overflow-x-hidden">
+<body class="bg-pubDark text-zinc-100 font-sans antialiased flex flex-col min-h-screen justify-between">
 
-    <!-- Header / Navigation -->
-    <header class="fixed w-full z-50 bg-zinc-950/90 backdrop-blur-md border-b border-zinc-800/80">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
-            <a href="#" class="flex items-center gap-2 sm:gap-3 group">
-                <!-- Crest Image with Fallback -->
-                <img 
-                    src="./photos/crest.jpg" 
-                    onerror="this.onerror=null; this.src='https://placehold.co/100x100/18181b/d4af37?text=Tolly%27s';" 
-                    alt="Tolly's Crest" 
-                    class="h-8 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105"
-                >
-                <span class="font-serif-custom text-lg sm:text-xl tracking-wider text-amber-400 font-bold">TOLLY'S</span>
-            </a>
-            
-            <nav class="hidden md:flex items-center gap-8 font-medium text-sm tracking-wide">
-                <a href="#about" class="hover:text-amber-400 transition-colors">ABOUT</a>
-                <a href="#specials" class="hover:text-amber-400 transition-colors">DAILY SPECIALS</a>
-                <a href="#menu" class="hover:text-amber-400 transition-colors">MENU</a>
-                <a href="#contact" class="hover:text-amber-400 transition-colors">CONTACT</a>
-            </nav>
+  <!-- TOP BAR -->
+  <div class="bg-gradient-to-r from-pubRed via-red-950 to-pubDark text-pubGold font-bold text-xs text-center py-2 px-4 border-b border-pubGold/30 relative z-50 flex flex-col sm:flex-row justify-center items-center gap-1 sm:gap-4">
+    <span>🏆 Voted Darke County "Business of the Year" & Best Overall Restaurant!</span>
+    <span class="hidden sm:inline text-zinc-500">•</span>
+    <span class="text-zinc-300 font-normal">Owned & Operated by <strong class="text-white">Darby & Clay Longfellow</strong></span>
+  </div>
 
-            <a href="#menu" class="bg-amber-500 hover:bg-amber-400 text-zinc-950 font-bold px-4 py-2 sm:px-5 sm:py-2.5 rounded-full text-xs sm:text-sm transition-all shadow-lg shadow-amber-500/10">
-                View Menu
-            </a>
+  <!-- NAV -->
+  <nav class="sticky top-0 z-50 bg-pubDark/95 backdrop-blur-md border-b border-zinc-800">
+    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+      <a href="#" onclick="switchPage('home')" class="flex flex-col">
+        <span class="text-xl font-black text-pubGold uppercase">TOLLY'S</span>
+        <span class="text-[9px] tracking-widest text-red-500 uppercase -mt-1 font-semibold">GASTROPUB</span>
+      </a>
+      <div class="hidden md:flex items-center space-x-1 text-sm bg-zinc-900 p-1 rounded-xl border border-zinc-800">
+        <button onclick="switchPage('home')" id="nav-home" class="nav-btn px-4 py-1.5 rounded-lg text-pubGold bg-pubCard border border-pubGold/30">Home</button>
+        <button onclick="switchPage('menu')" id="nav-menu" class="nav-btn px-4 py-1.5 rounded-lg text-zinc-400">Full Menu</button>
+        <button onclick="switchPage('specials')" id="nav-specials" class="nav-btn px-4 py-1.5 rounded-lg text-zinc-400">Specials</button>
+      </div>
+      <a href="tel:9374595225" class="bg-pubGold hover:bg-pubGoldHover text-pubDark font-bold text-xs px-3 py-2 rounded-lg shadow-gold-glow flex items-center gap-1">
+        <i class="fa-solid fa-phone"></i> (937) 459-5225
+      </a>
+    </div>
+    <div class="md:hidden flex justify-around bg-zinc-900 border-t border-zinc-800 py-2 text-xs font-semibold">
+      <button onclick="switchPage('home')" class="text-pubGold">Home</button>
+      <button onclick="switchPage('menu')" class="text-zinc-400">Full Menu</button>
+      <button onclick="switchPage('specials')" class="text-zinc-400">Specials</button>
+    </div>
+  </nav>
+
+  <!-- HOME PAGE -->
+  <main id="page-home" class="page-content grow">
+    <section class="relative min-h-[70vh] flex items-center justify-center text-center px-4 py-12 overflow-hidden">
+      <div class="absolute inset-0 z-0">
+        <img src="photos/tollys.jfif" onerror="this.onerror=null;this.src='https://placehold.co/1200x800/141418/d4af37?text=Tolly%27s+Exterior+Background';" alt="Tolly's Exterior" class="w-full h-full object-cover brightness-90 contrast-110"/>
+        <div class="absolute inset-0 bg-gradient-to-b from-pubDark/85 via-pubDark/80 to-pubDark"></div>
+      </div>
+      <div class="max-w-4xl mx-auto relative z-10 flex flex-col items-center">
+        <div class="mb-4 w-56 h-72 sm:w-64 sm:h-80 rounded-2xl border-4 border-pubGold bg-black shadow-gold-glow overflow-hidden">
+          <img src="photos/crest.jpg" onerror="this.onerror=null;this.src='https://placehold.co/600x800/000000/d4af37?text=Longfellow+Family+Crest';" alt="Family Crest" class="w-full h-full object-cover filter contrast-125 saturate-110"/>
         </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="relative min-h-[100dvh] flex items-center justify-center pt-16 sm:pt-20 overflow-hidden">
-        <!-- Background Image with .jfif handling and dynamic fallback -->
-        <div class="absolute inset-0 z-0">
-            <img 
-                src="./photos/tollys.jfif" 
-                onerror="this.onerror=null; this.src='https://placehold.co/1920x1080/09090b/d4af37?text=Tolly%27s+Bar+%26+Grill';" 
-                alt="Tolly's Exterior" 
-                class="w-full h-full object-cover object-center brightness-40 contrast-110"
-            >
-            <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/60 to-transparent"></div>
+        
+        <!-- OWNERS BADGE -->
+        <div class="flex items-center gap-2 bg-zinc-900/90 border border-pubGold/50 px-4 py-1.5 rounded-full mb-3 shadow-md">
+          <i class="fa-solid fa-user-check text-xs text-pubGold"></i>
+          <span class="text-xs font-semibold text-zinc-100">Darby & Clay Longfellow, Owners & Operators</span>
         </div>
 
-        <div class="relative z-10 max-w-4xl mx-auto text-center px-4 py-16 sm:py-24">
-            <p class="text-amber-400 font-semibold tracking-widest text-xs sm:text-sm uppercase mb-3 sm:mb-4">Welcome To</p>
-            <h1 class="font-serif-custom text-3xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white mb-4 sm:mb-6 leading-tight">
-                TOLLY'S BAR & GRILL
-            </h1>
-            <p class="text-base sm:text-xl text-zinc-300 max-w-2xl mx-auto mb-8 sm:mb-10 font-light leading-relaxed">
-                Great drinks, fresh food, and good times. Your favorite local neighborhood spot.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center w-full max-w-xs mx-auto sm:max-w-none">
-                <a href="#specials" class="bg-amber-500 hover:bg-amber-400 text-zinc-950 font-bold px-6 sm:px-8 py-3 sm:py-3.5 rounded-full text-sm sm:text-base transition-all shadow-lg shadow-amber-500/20 text-center">
-                    Today's Specials
-                </a>
-                <a href="#contact" class="border border-zinc-700 hover:border-amber-400 hover:text-amber-400 text-zinc-300 font-semibold px-6 sm:px-8 py-3 sm:py-3.5 rounded-full text-sm sm:text-base transition-all backdrop-blur-sm text-center">
-                    Find Us
-                </a>
-            </div>
+        <h1 class="text-3xl sm:text-5xl font-extrabold text-white mb-3">Welcome to <span class="text-pubGold">Tolly's Gastropub</span></h1>
+        <p class="text-sm sm:text-base text-zinc-200 max-w-xl mb-6">Honoring family tradition with hearty comfort food, prime steaks, cold craft drinks, and genuine Darke County hospitality.</p>
+        <div class="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+          <button onclick="switchPage('menu')" class="bg-pubGold hover:bg-pubGoldHover text-pubDark font-bold px-6 py-3 rounded-xl shadow-gold-glow">Explore Menu</button>
+          <a href="#location-home" class="bg-zinc-900/80 border border-zinc-700 text-zinc-200 font-semibold px-6 py-3 rounded-xl">Hours & Location</a>
         </div>
+      </div>
     </section>
 
-    <!-- Daily Specials Section -->
-    <section id="specials" class="py-16 sm:py-24 bg-zinc-900/50 border-y border-zinc-800/50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
-                <div>
-                    <span class="text-amber-400 font-semibold tracking-widest text-xs sm:text-sm uppercase">Featured</span>
-                    <h2 class="font-serif-custom text-2xl sm:text-4xl font-bold text-white mt-1 sm:mt-2 mb-4 sm:mb-6">
-                        Daily Food & Drink Specials
-                    </h2>
-                    <p class="text-zinc-400 text-sm sm:text-base leading-relaxed mb-6">
-                        Stop in every day of the week to enjoy our rotating kitchen features and drink discounts. From loaded burgers to cold draft beers, we've got something for everyone.
-                    </p>
-                    <ul class="space-y-3 sm:space-y-4 text-zinc-300 text-sm sm:text-base">
-                        <li class="flex items-center gap-3">
-                            <i class="fa-solid fa-check text-amber-400"></i>
-                            <span>Freshly prepared daily features</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <i class="fa-solid fa-check text-amber-400"></i>
-                            <span>Ice-cold local and craft drafts on tap</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <i class="fa-solid fa-check text-amber-400"></i>
-                            <span>Happy Hour options available weekly</span>
-                        </li>
-                    </ul>
-                </div>
-                
-                <div class="relative rounded-xl sm:rounded-2xl overflow-hidden border border-zinc-800 shadow-2xl">
-                    <!-- Special Image with Fallback -->
-                    <img 
-                        src="./photos/special.jpg" 
-                        onerror="this.onerror=null; this.src='https://placehold.co/800x600/18181b/d4af37?text=Daily+Specials';" 
-                        alt="Tolly's Special" 
-                        class="w-full h-auto object-cover hover:scale-105 transition-transform duration-500"
-                        loading="lazy"
-                    >
-                </div>
-            </div>
-        </div>
+    <!-- TROPHY CASE -->
+    <section class="py-10 bg-zinc-950 border-t border-b border-zinc-800">
+      <div class="max-w-7xl mx-auto px-4 grid sm:grid-cols-2 md:grid-cols-4 gap-4 text-center">
+        <div class="bg-pubCard border border-zinc-800 p-4 rounded-xl"><i class="fa-solid fa-trophy text-pubGold text-xl mb-1"></i><h4 class="font-bold text-white text-sm">Business of the Year</h4><p class="text-zinc-500 text-xs">Darke County Choice</p></div>
+        <div class="bg-pubCard border border-zinc-800 p-4 rounded-xl"><i class="fa-solid fa-utensils text-pubGold text-xl mb-1"></i><h4 class="font-bold text-white text-sm">Best Overall Restaurant</h4><p class="text-zinc-500 text-xs">Voted #1 Favorite</p></div>
+        <div class="bg-pubCard border border-zinc-800 p-4 rounded-xl"><i class="fa-solid fa-drumstick-bite text-pubGold text-xl mb-1"></i><h4 class="font-bold text-white text-sm">Best Steaks</h4><p class="text-zinc-500 text-xs">Voted #1 Best Steaks</p></div>
+        <div class="bg-pubCard border border-zinc-800 p-4 rounded-xl"><i class="fa-solid fa-glass-water text-pubGold text-xl mb-1"></i><h4 class="font-bold text-white text-sm">Best Bar & Lounge</h4><p class="text-zinc-500 text-xs">Voted #1 Local Bar</p></div>
+      </div>
     </section>
 
-    <!-- Footer -->
-    <footer id="contact" class="bg-zinc-950 py-8 sm:py-12 border-t border-zinc-900">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-zinc-500 text-xs sm:text-sm">
-            <p>&copy; Tolly's Bar & Grill. All rights reserved.</p>
+    <!-- HOURS & LOCATION -->
+    <section id="location-home" class="py-12 bg-pubDark border-b border-zinc-800">
+      <div class="max-w-7xl mx-auto px-4 grid lg:grid-cols-2 gap-8 items-center">
+        <div>
+          <span class="text-pubGold font-semibold text-xs uppercase">Visit Us</span>
+          <h2 class="text-2xl font-bold text-white mt-1 mb-4">Location & Opening Hours</h2>
+          <div class="space-y-2 text-zinc-300 text-xs mb-6">
+            <p><i class="fa-solid fa-location-dot text-pubGold w-5"></i> 644 Wagner Ave, Greenville, OH 45331</p>
+            <p><i class="fa-solid fa-phone text-pubGold w-5"></i> (937) 459-5225</p>
+          </div>
+          <div class="grid sm:grid-cols-2 gap-3">
+            <div class="bg-pubCard border border-zinc-800 p-3 rounded-xl">
+              <h4 class="text-xs font-bold text-pubGold uppercase mb-2"><i class="fa-solid fa-utensils"></i> Kitchen & Dining</h4>
+              <ul class="text-xs space-y-1 text-zinc-300">
+                <li class="flex justify-between"><span>Tue - Thu:</span> <span class="font-medium text-white">11:00 AM – 10:00 PM</span></li>
+                <li class="flex justify-between"><span>Fri - Sat:</span> <span class="font-medium text-white">11:00 AM – 11:00 PM</span></li>
+                <li class="flex justify-between text-zinc-500"><span>Sun - Mon:</span> <span>Closed</span></li>
+              </ul>
+            </div>
+            <div class="bg-pubCard border border-zinc-800 p-3 rounded-xl">
+              <h4 class="text-xs font-bold text-pubGold uppercase mb-2"><i class="fa-solid fa-martini-glass-citrus"></i> Bar Hours</h4>
+              <ul class="text-xs space-y-1 text-zinc-300">
+                <li class="flex justify-between"><span>Tue - Thu:</span> <span class="font-medium text-white">11:00 AM – 12:00 AM</span></li>
+                <li class="flex justify-between"><span>Fri - Sat:</span> <span class="font-medium text-white">11:00 AM – 1:00 AM</span></li>
+                <li class="flex justify-between text-zinc-500"><span>Sun - Mon:</span> <span>Closed</span></li>
+              </ul>
+            </div>
+          </div>
         </div>
-    </footer>
+        <div class="w-full h-64 rounded-xl overflow-hidden border border-zinc-800">
+          <iframe title="Map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3056.230784332924!2d-84.61833772346083!3d40.09268307149363!2m3!1f0!f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x883ff0c6b1a13b63%3A0xb36b56bc229bb12a!2s644%20Wagner%20Ave%2C%20Greenville%2C%20OH%2045331!5e0!2m3!1sen!2sus!4v1700000000000!5m2!1sen!2sus" class="w-full h-full border-0 grayscale opacity-80" loading="lazy"></iframe>
+        </div>
+      </div>
+    </section>
+  </main>
 
+  <!-- MENU PAGE -->
+  <main id="page-menu" class="page-content hidden grow">
+    <section class="py-8 max-w-7xl mx-auto px-4">
+      <div class="text-center mb-8">
+        <h2 class="text-3xl font-extrabold text-white">Full Menu</h2>
+        <p class="text-xs text-zinc-400 mt-1">Dine-In & Carryout | Call (937) 459-5225 to Order</p>
+      </div>
+
+      <div class="space-y-8">
+
+        <!-- APPETIZERS -->
+        <div class="bg-pubCard border border-zinc-800 rounded-xl p-6">
+          <h3 class="text-xl font-bold text-pubGold mb-2"><i class="fa-solid fa-pepper-hot mr-2"></i>Appetizers</h3>
+          <p class="text-xs text-zinc-400 italic mb-4">All of Tolly's appetizers are big enough to share.</p>
+          <div class="grid md:grid-cols-2 gap-4 text-xs">
+            <div><div class="flex justify-between font-bold text-white"><span>Tolly's Pork Pot Stickers</span><span class="text-pubGold">$11.99</span></div><p class="text-zinc-400 my-0.5">Hand-rolled dumplings served fried or steamed with teriyaki glaze, scallions, red pepper, and chopped bacon over top. <span class="text-zinc-500 italic">(Not available for Happy Hour)</span></p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>French Onion Soup</span><span class="text-pubGold">Cup: $4.99 | Bowl: $6.99</span></div><p class="text-zinc-400 my-0.5">With croutons & provolone cheese. <span class="text-zinc-500 italic">(Not available for Happy Hour)</span></p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>Shrimp Cocktail</span><span class="text-pubGold">$13.99</span></div><p class="text-zinc-400 my-0.5">Premium jumbo shrimp served with house-made cocktail sauce. <span class="text-zinc-500 italic">(Not available for Happy Hour)</span></p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>Loaded Fries</span><span class="text-pubGold">$9.99</span></div><p class="text-zinc-400 my-0.5">Fresh cut fries with 3-cheese medley, bacon, scallions, tomato, and a side of sour cream.</p><p class="text-[10px] text-pubGold">Extra Bacon: $1.50 | Extra Sour Cream: $1.25</p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>Chicken Tenders</span><span class="text-pubGold">$13.99</span></div><p class="text-zinc-400 my-0.5">Perfectly breaded breast tenders served with your choice of dipping sauce. <span class="text-zinc-500 italic">(Not available for Happy Hour)</span></p><p class="text-[10px] text-pubGold">Extra Sauce: $1.50</p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>Tolly's Potato Skins</span><span class="text-pubGold">$11.99</span></div><p class="text-zinc-400 my-0.5">Potato skins topped with bacon, cheese, scallions, and sour cream.</p><p class="text-[10px] text-pubGold">Extra Sour Cream: $1.25 | Extra Bacon: $1.50 | Extra Cheese: $2.00</p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>Tolly's Gourmet Pretzel</span><span class="text-pubGold">$10.99</span></div><p class="text-zinc-400 my-0.5">Hand-rolled pretzel served with cheese & mustard.</p><p class="text-[10px] text-pubGold">Exchange Mustard for Cheese: $2.00 | Extra Mustard: $1.25 | Extra Cheese: $2.50</p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>Loaded Pub Chili Fries</span><span class="text-pubGold">$10.99</span></div><p class="text-zinc-400 my-0.5">Hand-cut fries topped with house-made chili, 3-cheese medley, scallions, tomato, and jalapeños, served with chipotle dip.</p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>Crab Rangoon</span><span class="text-pubGold">$9.99</span></div><p class="text-zinc-400 my-0.5">Hand-wrapped sweet cream cheese and crab served with jalapeño berry sauce. <span class="text-zinc-500 italic">(Not available for Happy Hour)</span></p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>Bruschetta</span><span class="text-pubGold">$10.99</span></div><p class="text-zinc-400 my-0.5">Tomato, basil, and garlic served with garlic toast. <span class="text-zinc-500 italic">(Not available for Happy Hour)</span></p><p class="text-[10px] text-pubGold">Add Chilled Shrimp: $5.25 | Add Extra Garlic Toast: $3.99</p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>Loaded Tolly's Tots</span><span class="text-pubGold">$10.99</span></div><p class="text-zinc-400 my-0.5">Tots topped with 3-cheese medley, bacon, scallions, tomatoes, and banana peppers, served with sour cream. <span class="text-zinc-500 italic">(Not available for Happy Hour)</span></p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>Loaded Chili Tots</span><span class="text-pubGold">$10.99</span></div><p class="text-zinc-400 my-0.5">Tots topped with 3-cheese medley, loaded with chili, scallions, tomato, red peppers, and jalapeños, served with chipotle dip. <span class="text-zinc-500 italic">(Not available for Happy Hour)</span></p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>Dragon Sprouts</span><span class="text-pubGold">$9.99</span></div><p class="text-zinc-400 my-0.5">Deep-fried brussel sprouts topped with bacon, scallions, and a sesame teriyaki drizzle. <span class="text-zinc-500 italic">(Not available for Happy Hour)</span></p></div>
+          </div>
+        </div>
+
+        <!-- FRIES, BREADSTICKS, SIDES & KIDS -->
+        <div class="bg-pubCard border border-zinc-800 rounded-xl p-6">
+          <h3 class="text-xl font-bold text-pubGold mb-2"><i class="fa-solid fa-bowl-rice mr-2"></i>Fries, Sides & Kids</h3>
+          <div class="grid md:grid-cols-2 gap-6 text-xs mt-4">
+            <div>
+              <h4 class="font-bold text-white text-sm border-b border-zinc-800 pb-1 mb-2">Fries (Baskets Big Enough to Share)</h4>
+              <div class="space-y-2">
+                <div><div class="flex justify-between font-bold text-white"><span>Seasoned Fresh Cut Fries</span><span class="text-pubGold">$6.99</span></div><p class="text-zinc-400">Fresh cut fries seasoned with special house seasoning.</p></div>
+                <div><div class="flex justify-between font-bold text-white"><span>Tolly's Pub Chips</span><span class="text-pubGold">$6.99</span></div><p class="text-zinc-400">Fresh cut chips served with French onion dip. <span class="text-pubGold text-[10px]">(Extra Dip: $1.75)</span></p></div>
+                <div><div class="flex justify-between font-bold text-white"><span>Basket of Tots</span><span class="text-pubGold">$8.99</span></div><p class="text-zinc-400">Tots deep-fried to a delicious golden-brown.</p></div>
+                <div><div class="flex justify-between font-bold text-white"><span>Sweet Potato Fries</span><span class="text-pubGold">$8.99</span></div><p class="text-zinc-400">Drizzled with pumpkin glaze. <span class="text-pubGold text-[10px]">(Extra Glaze: Sm $1.00 | Lg $2.00)</span></p></div>
+                <div><div class="flex justify-between font-bold text-white"><span>Basket of Onion Rings</span><span class="text-pubGold">$8.99</span></div><p class="text-zinc-400">Beer-battered onion rings with chipotle dip. <span class="text-pubGold text-[10px]">(Extra Dip: $1.25)</span></p></div>
+              </div>
+            </div>
+            <div class="space-y-4">
+              <div>
+                <h4 class="font-bold text-white text-sm border-b border-zinc-800 pb-1 mb-2">Bread Sticks</h4>
+                <div class="flex justify-between font-bold text-white"><span>6 Sticks (w/ Cheese & Marinara)</span><span class="text-pubGold">$8.99</span></div>
+                <p class="text-[10px] text-pubGold mt-1">Extra Marinara: $1.25 | Extra Cheese: $2.50 | Exchange Marinara for Cheese: $2.00</p>
+              </div>
+              <div>
+                <h4 class="font-bold text-white text-sm border-b border-zinc-800 pb-1 mb-2">Sides A La Carte ($3.99)</h4>
+                <p class="text-zinc-300">Green Beans, Broccoli, Garlic Smashed Potatoes, Baked Potatoes, Cottage Cheese, Coleslaw, Mac N Cheese, Mashed Potatoes & Gravy.</p>
+                <p class="text-zinc-300 font-bold mt-1">Applesauce: <span class="text-pubGold">$2.99</span></p>
+              </div>
+              <div>
+                <h4 class="font-bold text-white text-sm border-b border-zinc-800 pb-1 mb-2">Kids Meals (Served with Fries)</h4>
+                <p class="text-[11px] text-zinc-400 mb-2">Kids 10 & Under: <span class="text-pubGold font-bold">$7.99</span> | Adults: <span class="text-pubGold font-bold">$10.99</span></p>
+                <ul class="list-disc list-inside text-zinc-300 space-y-1">
+                  <li>Kids Hamburger</li>
+                  <li>Kids Chicken Tender</li>
+                  <li>Kids Spaghetti</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SALADS -->
+        <div class="bg-pubCard border border-zinc-800 rounded-xl p-6">
+          <h3 class="text-xl font-bold text-pubGold mb-2"><i class="fa-solid fa-leaf mr-2"></i>Salads</h3>
+          <p class="text-xs text-pubGold font-semibold mb-4">Add Blue Cheese Crumble: $2.25</p>
+          <div class="space-y-4 text-xs">
+            <div>
+              <h4 class="font-bold text-white text-sm border-b border-zinc-800 pb-1 mb-2">Side Salads</h4>
+              <div class="grid md:grid-cols-3 gap-3">
+                <div><div class="flex justify-between font-bold text-white"><span>House</span><span class="text-pubGold">$5.99</span></div><p class="text-zinc-400">Fresh romaine, cheese, tomato, cucumbers, house croutons.</p></div>
+                <div><div class="flex justify-between font-bold text-white"><span>Spinach</span><span class="text-pubGold">$6.99</span></div><p class="text-zinc-400">Spinach, mozzarella, bacon, tomatoes, eggs, croutons, mushrooms.</p></div>
+                <div><div class="flex justify-between font-bold text-white"><span>Caesar</span><span class="text-pubGold">$5.99</span></div><p class="text-zinc-400">Fresh romaine, croutons, parmesan cheese, Caesar dressing.</p></div>
+              </div>
+            </div>
+            <div>
+              <h4 class="font-bold text-white text-sm border-b border-zinc-800 pb-1 mb-2">Full-Sized Salads</h4>
+              <div class="grid md:grid-cols-2 gap-4">
+                <div><div class="flex justify-between font-bold text-white"><span>Spinach</span><span class="text-pubGold">$13.99</span></div><p class="text-zinc-400">Spinach, mozzarella, bacon, tomatoes, eggs, croutons, mushrooms. <span class="text-pubGold text-[10px]">(Add Chicken: $2.50)</span></p></div>
+                <div><div class="flex justify-between font-bold text-white"><span>Grilled Tuna or Grilled Chicken</span><span class="text-pubGold">$13.99</span></div><p class="text-zinc-400">Fresh romaine, tomato, eggs, cucumber, bacon, mozzarella, croutons.</p></div>
+                <div><div class="flex justify-between font-bold text-white"><span>Buffalo or BBQ Chicken</span><span class="text-pubGold">$13.99</span></div><p class="text-zinc-400">Fresh romaine, crispy chicken tenders, bacon, tomato, eggs, scallions, 3-cheese medley, cucumber, croutons. <span class="text-pubGold text-[10px]">(Extra Chicken: $2.50)</span></p></div>
+                <div><div class="flex justify-between font-bold text-white"><span>Tolly's Chef</span><span class="text-pubGold">$13.99</span></div><p class="text-zinc-400">Turkey, bacon, ham, tomato, egg, cheese medley, scallions, cucumber, croutons, onion.</p></div>
+                <div><div class="flex justify-between font-bold text-white"><span>Tolly's Steak</span><span class="text-pubGold">$13.99</span></div><p class="text-zinc-400">Thin-sliced steak, bacon, tomato, cheese medley, topped with onion rings and fresh-cut fries. <span class="text-pubGold text-[10px]">(Extra Steak: $3.00)</span></p></div>
+                <div><div class="flex justify-between font-bold text-white"><span>Tolly's Taco</span><span class="text-pubGold">$13.99</span></div><p class="text-zinc-400">House shell, romaine, chili, cheese, tomato, scallions, black & green olives, jalapeños, salsa & sour cream.</p></div>
+                <div><div class="flex justify-between font-bold text-white"><span>Grilled Chicken Caesar</span><span class="text-pubGold">$13.99</span></div><p class="text-zinc-400">Fresh romaine, Caesar dressing, grilled chicken, croutons, parmesan cheese. <span class="text-pubGold text-[10px]">(Without Chicken: $10.99)</span></p></div>
+                <div><div class="flex justify-between font-bold text-white"><span>Pub Shrimp (Chilled Shrimp)</span><span class="text-pubGold">$14.99</span></div><p class="text-zinc-400">Fresh romaine, tomato, scallions, cucumbers, bacon, croutons, chilled shrimp. <span class="text-pubGold text-[10px]">(Extra Shrimp: $4.00)</span></p></div>
+                <div><div class="flex justify-between font-bold text-white"><span>Italian</span><span class="text-pubGold">$13.99</span></div><p class="text-zinc-400">Romaine, tomato, olives, pepperoni, banana pepper, croutons, red onion, parmesan, Italian garlic dressing, bread sticks.</p></div>
+                <div><div class="flex justify-between font-bold text-white"><span>Seafood Salad</span><span class="text-pubGold">$19.99</span></div><p class="text-zinc-400">Romaine, tomato, onion, egg, croutons, cheese, olives, crab, cucumbers, chilled shrimp, grilled tuna steak. <span class="text-pubGold text-[10px]">(Extra Shrimp: $4.00)</span></p></div>
+              </div>
+            </div>
+            <div class="bg-zinc-900 p-3 rounded-lg border border-zinc-800 text-[11px]">
+              <span class="font-bold text-pubGold block mb-1">Dressings:</span>
+              Ranch, French, Honey Mustard, 1000 Island, Hot Bacon, Poppyseed, Italian, Raspberry Vinaigrette. 
+              <span class="text-zinc-400 block mt-1">Blue Cheese: Reg $1.25 | Extra $2.75 | Extra Dressing: $1.50</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- SANDWICHES -->
+        <div class="bg-pubCard border border-zinc-800 rounded-xl p-6">
+          <h3 class="text-xl font-bold text-pubGold mb-2"><i class="fa-solid fa-burger mr-2"></i>Sandwiches & Burgers</h3>
+          <p class="text-xs text-zinc-400 italic mb-1">All sandwiches come with chips. Make it a basket (adds Fries & Coleslaw) for $4.25.</p>
+          <p class="text-xs text-pubGold font-semibold mb-4">Add Extra Patty to Any Burger: $5.50</p>
+          <div class="grid md:grid-cols-2 gap-4 text-xs">
+            <div><div class="flex justify-between font-bold text-white"><span>Hamburger</span><span class="text-pubGold">$11.99</span></div><p class="text-zinc-400">Ground chuck, lettuce, tomato, pickle, onion with mayo on the side. <span class="text-pubGold text-[10px]">(Add Cheese: $1.00)</span></p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>The Reuben</span><span class="text-pubGold">$11.99</span></div><p class="text-zinc-400">Corned beef, Swiss cheese, sauerkraut served with 1000 Island dressing. <span class="text-pubGold text-[10px]">(Extra 1000 Island: Lg $1.25 | Sm $0.75)</span></p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>Tolly's Grilled Club</span><span class="text-pubGold">$11.99</span></div><p class="text-zinc-400">Ham, turkey, bacon, chipotle mayo, lettuce, tomato, American & Swiss cheese.</p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>Poutine Burger</span><span class="text-pubGold">$12.99</span></div><p class="text-zinc-400">Open-face ground chuck burger loaded with French fries, bacon, gravy, cheese curds, and scallions.</p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>Philly Cheese</span><span class="text-pubGold">$12.99</span></div><p class="text-zinc-400">Sliced beef or chicken, red peppers, mushrooms, onion, provolone cheese with a side of mayo.</p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>Tolly's Pub Burger</span><span class="text-pubGold">$12.99</span></div><p class="text-zinc-400">Ground chuck, coleslaw, tomato, hot pepper cheese, topped with fries.</p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>Pizza Burger</span><span class="text-pubGold">$12.99</span></div><p class="text-zinc-400">Ground chuck, pepperoni, bacon, banana peppers, tomato, onion, lettuce, red sauce, provolone cheese.</p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>Chili Burger</span><span class="text-pubGold">$12.99</span></div><p class="text-zinc-400">Open-faced burger smothered in chili, cheese, tomato, scallion, jalapeño, chipotle sauce. <span class="text-pubGold italic">(Use your fork!)</span></p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>Chicken Bacon Ranch Wrap</span><span class="text-pubGold">$12.99</span></div><p class="text-zinc-400">Chicken tenders, bacon, tomato, lettuce, scallions, ranch, cheddar. <span class="text-pubGold text-[10px]">(Extra Ranch: $1.50)</span></p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>Todd's Special</span><span class="text-pubGold">$12.99</span></div><p class="text-zinc-400">Breaded or grilled chicken breast, bacon, lettuce, onion, tomato, chipotle mayo, provolone.</p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>BBQ Chicken Wrap</span><span class="text-pubGold">$11.99</span></div><p class="text-zinc-400">Crispy BBQ tenders, bacon, tomato, cheddar, ranch, lettuce, scallions. <span class="text-pubGold text-[10px]">(Extra BBQ: $1.25)</span></p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>Buffalo Chicken Wrap</span><span class="text-pubGold">$11.99</span></div><p class="text-zinc-400">Crispy Buffalo tenders, ranch, bacon, scallions, lettuce, tomato, provolone cheese.</p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>Pub Pulled Pork Sandwich</span><span class="text-pubGold">$12.99</span></div><p class="text-zinc-400">Pulled pork, house-made BBQ sauce, onion, coleslaw. <span class="text-pubGold text-[10px]">(Extra BBQ: $1.25)</span></p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>Smoking Hot Pub Burger</span><span class="text-pubGold">$12.99</span></div><p class="text-zinc-400">Ground chuck, tomato, onion, jalapeño, hot pepper cheese, chipotle sauce.</p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>Pub BBQ Pork Sandwich</span><span class="text-pubGold">$12.99</span></div><p class="text-zinc-400">Pulled pork, house-made BBQ, topped with onion rings. <span class="text-pubGold text-[10px]">(Extra BBQ: $1.25)</span></p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>Tenderloin (Breaded or Grilled)</span><span class="text-pubGold">$12.99</span></div><p class="text-zinc-400">Hand-breaded, lettuce, onion, tomato, pickle, mayo. <span class="text-pubGold text-[10px]">(Add Cheese: $1.00)</span></p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>Pub BBQ Burger</span><span class="text-pubGold">$12.99</span></div><p class="text-zinc-400">Ground chuck, bacon, lettuce, tomato, onion, BBQ, provolone, onion rings. <span class="text-pubGold text-[10px]">(Extra BBQ: $1.25)</span></p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>Longfellow Burger</span><span class="text-pubGold">$14.99</span></div><p class="text-zinc-400">2 ground chuck patties, bacon, onion, lettuce, tomato, Tolly's sauce, cheddar.</p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>Tolly's Traditional Cuban</span><span class="text-pubGold">$12.99</span></div><p class="text-zinc-400">Cuban mustard, pulled pork, roast ham, Swiss, Cuban mayo, kosher pickle, grilled.</p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>Tolly's Patty Melt</span><span class="text-pubGold">$12.99</span></div><p class="text-zinc-400">All-beef patty, grilled onions, jalapeños, cheddar on Texas toast with chipotle mayo.</p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>Pub Dipper</span><span class="text-pubGold">$11.99</span></div><p class="text-zinc-400">House roast beef or pork smothered in Swiss on a French roll with au jus. <span class="text-pubGold text-[10px]">(Extra Au Jus: $1.50)</span></p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>Big Fish Sandwich</span><span class="text-pubGold">$12.99</span></div><p class="text-zinc-400">Breaded cod, cheese, lettuce, tomato, onion, side of tartar sauce.</p></div>
+          </div>
+        </div>
+
+        <!-- SUBS -->
+        <div class="bg-pubCard border border-zinc-800 rounded-xl p-6">
+          <h3 class="text-xl font-bold text-pubGold mb-2"><i class="fa-solid fa-bread-slice mr-2"></i>Subs (All Subs $13.99)</h3>
+          <p class="text-xs text-zinc-400 italic mb-4">All subs come with chips. Make it a basket (adds Fries & Coleslaw) for $4.25. Add extra meat for $3.00.</p>
+          <div class="grid md:grid-cols-2 gap-4 text-xs">
+            <div><div class="font-bold text-white">Tolly's Original</div><p class="text-zinc-400">Pepperoni, ham, salami, red sauce, tomato, lettuce, onion, cheese, Italian dressing.</p></div>
+            <div><div class="font-bold text-white">Pizza Sub</div><p class="text-zinc-400">Pepperoni, onion, mushroom, sausage, red sauce, cheese.</p></div>
+            <div><div class="font-bold text-white">Chicken Bacon Ranch</div><p class="text-zinc-400">Breaded chicken, bacon, ranch, lettuce, tomato, onion, cheese.</p></div>
+            <div><div class="font-bold text-white">Stack Ham</div><p class="text-zinc-400">Loads of ham, lettuce, tomato, onion, mayo, melted provolone.</p></div>
+            <div><div class="font-bold text-white">Todd's Bronx Bombers Sub</div><p class="text-zinc-400">Corned beef, toasted provolone, red onion, slaw, Russian dressing.</p></div>
+            <div><div class="font-bold text-white">Hero Sub</div><p class="text-zinc-400">Roast beef, ham, turkey, provolone, mayo, deli mustard, lettuce, tomato, red onion.</p></div>
+            <div><div class="font-bold text-white">Club Sub</div><p class="text-zinc-400">Turkey, ham, bacon, provolone, cheddar, mayo, deli mustard, lettuce, tomato, onion.</p></div>
+            <div><div class="font-bold text-white">Tolly's Beef & Cheddar</div><p class="text-zinc-400">Sliced roast beef, lettuce, tomato, onion, cheddar cheese, BBQ sauce, mayo.</p></div>
+            <div><div class="font-bold text-white">New York Steamer Sub</div><p class="text-zinc-400">Corned beef, pastrami, lettuce, tomato, onion, provolone, deli mustard, mayo, Italian dressing.</p></div>
+            <div><div class="font-bold text-white">Turkey Bacon Ranch Sub</div><p class="text-zinc-400">Turkey, bacon, provolone, lettuce, tomato, onion, ranch.</p></div>
+            <div><div class="font-bold text-white">Italian Sub</div><p class="text-zinc-400">Pastrami, salami, Italian ham, mushrooms, pesto, lettuce, tomato, Italian dressing, side of mayo.</p></div>
+            <div><div class="font-bold text-white">Italian Meatball Sub</div><p class="text-zinc-400">Meatballs with red sauce, onion, melted provolone.</p></div>
+            <div><div class="font-bold text-white">Veggie Sub</div><p class="text-zinc-400">Sliced tomato, onion, spinach, lettuce, Swiss, cheddar, pesto, Italian dressing, mayo, deli mustard.</p></div>
+          </div>
+        </div>
+
+        <!-- DINNERS -->
+        <div class="bg-pubCard border border-zinc-800 rounded-xl p-6">
+          <h3 class="text-xl font-bold text-pubGold mb-2"><i class="fa-solid fa-utensils mr-2"></i>Dinners</h3>
+          <p class="text-xs text-zinc-400 italic mb-4">Add a House Salad or additional side for $3.50 | Add a basket of Bread (White or Wheat Berry) for $3.25</p>
+          <div class="grid md:grid-cols-2 gap-4 text-xs">
+            <div><div class="flex justify-between font-bold text-white"><span>Tolly's 4pc Chicken</span><span class="text-pubGold">$15.99</span></div><p class="text-zinc-400">Hand-breaded and served with fresh-cut fries.</p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>Chicken Livers</span><span class="text-pubGold">$13.99</span></div><p class="text-zinc-400">Fried with sautéed onions, bacon, served with garlic smashed potatoes.</p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>Chicken or Beef Noodle</span><span class="text-pubGold">$12.99</span></div><p class="text-zinc-400">House-made noodles served with smashed potatoes and green beans.</p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>Tolly's Fish and Chips</span><span class="text-pubGold">$13.99</span></div><p class="text-zinc-400">Beer-battered cod served with fresh-cut fries.</p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>Pub BBQ Rib Snack Basket</span><span class="text-pubGold">$13.99</span></div><p class="text-zinc-400">Ribs with hand-cut fries.</p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>Lasagna</span><span class="text-pubGold">$14.99</span></div><p class="text-zinc-400">3-meat and cheese house-made lasagna served with garlic bread sticks.</p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>Smothered Chicken Breasts</span><span class="text-pubGold">$14.99</span></div><p class="text-zinc-400">Sautéed mushroom, red peppers, bacon, onion, melted provolone, garlic smashed potatoes.</p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>Old-Fashioned Pork Chops</span><span class="text-pubGold">$14.99</span></div><p class="text-zinc-400">Hand-breaded fried chops over pub smashed potatoes with gravy.</p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>16 oz. Applewood Pork Chops</span><span class="text-pubGold">$20.99</span></div><p class="text-zinc-400">Smoked chop, side of apple sauce, sweet potato fries topped with pumpkin glaze.</p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>BBQ Ribs</span><span class="text-pubGold">Half $20.99 | Whole $26.99</span></div><p class="text-zinc-400">Slow-cooked fall-off-the-bone ribs, home-made BBQ, sweet potato fries with pumpkin glaze.</p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>16 oz. New York Strip</span><span class="text-pubGold">$25.99</span></div><p class="text-zinc-400">Charbroiled with loaded baked potato. <span class="text-pubGold text-[10px]">(Add Grilled Shrimp: $7.50)</span></p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>Tolly's Chili Spaghetti</span><span class="text-pubGold">$12.99</span></div><p class="text-zinc-400">Spaghetti in chili, cheese, scallions, tomato, red pepper, jalapeños, sour cream, bread sticks.</p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>Tolly's Homemade Meatloaf</span><span class="text-pubGold">$12.99</span></div><p class="text-zinc-400">Family recipe meatloaf with smashed potatoes, gravy, green beans.</p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>Tolly's Deep Dish Ziti</span><span class="text-pubGold">$15.99</span></div><p class="text-zinc-400">Meatballs, pepperoni, mushrooms, red peppers, onions, red & white sauce, cheese blend, breadsticks.</p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>Chicken Breast (Grilled or Cajun)</span><span class="text-pubGold">$13.99</span></div><p class="text-zinc-400">Boneless breast, garlic smashed potatoes, house salsa. <span class="text-pubGold text-[10px]">(Add Shrimp: $7.50)</span></p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>Beef Manhattan</span><span class="text-pubGold">$12.99</span></div><p class="text-zinc-400">Slow-roasted roast beef on 2 slices of bread, gravy, smashed potatoes, green beans.</p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>Spaghetti with Meatballs</span><span class="text-pubGold">$13.99</span></div><p class="text-zinc-400">House-made meatballs, spaghetti sauce, garlic bread sticks.</p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>Chicken Parmesan</span><span class="text-pubGold">$14.99</span></div><p class="text-zinc-400">Hand-breaded chicken on spaghetti with sauce, cheese, garlic bread sticks.</p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>Chop Sirloin</span><span class="text-pubGold">$14.99</span></div><p class="text-zinc-400">Ground sirloin, sliced sautéed mushrooms, smashed potatoes. <span class="text-pubGold text-[10px]">(Add Onions: $2.00)</span></p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>Grilled Yellowfin Tuna</span><span class="text-pubGold">$15.99</span></div><p class="text-zinc-400">Served with house-made salsa and a baked potato.</p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>Fried Jumbo Shrimp</span><span class="text-pubGold">$14.99</span></div><p class="text-zinc-400">Tiger shrimp fried with fresh-cut fries. <span class="text-pubGold text-[10px]">(Cajun/Grilled: $2.00)</span></p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>Shrimp Snack Basket</span><span class="text-pubGold">$13.99</span></div><p class="text-zinc-400">Deep-fried popcorn shrimp with cocktail dip and fresh-cut fries.</p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>Big Grilled Pork Chop</span><span class="text-pubGold">$16.99</span></div><p class="text-zinc-400">Hand-cut grilled chop with loaded smashed potato and applesauce. <span class="text-pubGold text-[10px]">(Add BBQ: $2.25)</span></p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>Clam Strips</span><span class="text-pubGold">$12.99</span></div><p class="text-zinc-400">Served with cocktail sauce and fresh-cut fries.</p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>Chicken & Waffles</span><span class="text-pubGold">$13.99</span></div><p class="text-zinc-400">3 crispy tenders & 3 sweet waffles, bacon, maple syrup, honey, powdered sugar, butter.</p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>Irish Pub Meatballs</span><span class="text-pubGold">$14.99</span></div><p class="text-zinc-400">3 meatballs over white cheddar smashed potatoes with Guinness mushroom gravy.</p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>Pan Fried Steak</span><span class="text-pubGold">$14.99</span></div><p class="text-zinc-400">Tenderized steak breaded & fried, green beans, smashed potatoes, gravy.</p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>Tolly's New Orleans Jambalaya</span><span class="text-pubGold">$17.99</span></div><p class="text-zinc-400">Cajun chicken, shrimp, sausage, peppers, onion, tomato, Cajun broth over rice. <span class="text-pubGold text-[10px]">(Exchange for Penne: $2.00)</span></p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>Tolly's BBQ Smoked Sausage</span><span class="text-pubGold">$13.99</span></div><p class="text-zinc-400">Sliced smoked sausage in BBQ sauce with fresh-cut fries.</p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>Coconut Shrimp</span><span class="text-pubGold">$15.99</span></div><p class="text-zinc-400">Hand-breaded shrimp, fresh-cut fries, coconut pineapple sauce.</p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>Parmesan Encrusted Chicken Breast</span><span class="text-pubGold">$15.99</span></div><p class="text-zinc-400">Parmesan crust, white sauce, tomatoes, scallions, baked potato.</p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>Parmesan Encrusted Haddock Fish</span><span class="text-pubGold">$15.99</span></div><p class="text-zinc-400">Parmesan crust, white sauce, tomatoes, scallions, baked potato.</p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>Maple Glazed Salmon</span><span class="text-pubGold">$17.99</span></div><p class="text-zinc-400">Served with a baked potato.</p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>Shrimp Scampi</span><span class="text-pubGold">$17.99</span></div><p class="text-zinc-400">Served with a baked potato.</p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>Feta Crusted Salmon</span><span class="text-pubGold">$17.99</span></div><p class="text-zinc-400">Served with a baked potato.</p></div>
+            <div><div class="flex justify-between font-bold text-white"><span>Philly Mac N Cheese</span><span class="text-pubGold">$15.99</span></div><p class="text-zinc-400">Sliced beef, peppers, mushrooms, onions over Mac & cheese with provolone & cheddar.</p></div>
+          </div>
+          <div class="mt-4 p-3 bg-zinc-900 border border-zinc-800 rounded-lg text-[11px] text-zinc-400">
+            *Baked potatoes come with butter and sour cream. <br>
+            **Loaded Baked/Smashed potatoes come with butter, sour cream, cheese, bacon, scallions ($0.75 extra).
+          </div>
+        </div>
+
+        <!-- WINGS & SHRIMP -->
+        <div class="bg-pubCard border border-zinc-800 rounded-xl p-6">
+          <h3 class="text-xl font-bold text-pubGold mb-2"><i class="fa-solid fa-drumstick-bite mr-2"></i>Wings & Shrimp</h3>
+          <p class="text-xs text-zinc-400 italic mb-3">Best Wings & Shrimp in Darke County. Bone In (Breaded or Non-Breaded) or Boneless.</p>
+          <div class="bg-zinc-900 p-3 rounded-lg text-xs text-zinc-300 mb-4 border border-zinc-800">
+            <span class="font-bold text-pubGold block mb-1">Sauces & Rubs:</span>
+            Hot, Mild, Medium, Garlic Parmesan, Cajun, Spicy Mango, Sesame Teriyaki, Sweet Honey BBQ, Spicy BBQ, Honey Mustard, Spicy Garlic.
+            <p class="text-[10px] text-pubGold mt-1">Blue Cheese, Celery, or Ranch: $1.50 each</p>
+          </div>
+          <div class="grid md:grid-cols-2 gap-4 text-xs">
+            <div class="bg-zinc-900 p-3 rounded-lg">
+              <h4 class="font-bold text-white mb-2">Wings</h4>
+              <p class="flex justify-between text-zinc-300"><span>6 Wings:</span> <span class="text-pubGold font-bold">$9.99</span></p>
+              <p class="flex justify-between text-zinc-300"><span>12 Wings:</span> <span class="text-pubGold font-bold">$15.99</span></p>
+              <p class="flex justify-between text-zinc-300"><span>18 Wings:</span> <span class="text-pubGold font-bold">$22.99</span></p>
+              <p class="flex justify-between text-zinc-300"><span>24 Wings:</span> <span class="text-pubGold font-bold">$29.99</span></p>
+            </div>
+            <div class="bg-zinc-900 p-3 rounded-lg">
+              <h4 class="font-bold text-white mb-2">Jumbo Shrimp</h4>
+              <p class="flex justify-between text-zinc-300"><span>6 Shrimp:</span> <span class="text-pubGold font-bold">$9.99</span></p>
+              <p class="flex justify-between text-zinc-300"><span>12 Shrimp:</span> <span class="text-pubGold font-bold">$14.99</span></p>
+              <p class="flex justify-between text-zinc-300"><span>18 Shrimp:</span> <span class="text-pubGold font-bold">$20.99</span></p>
+              <p class="flex justify-between text-zinc-300"><span>24 Shrimp:</span> <span class="text-pubGold font-bold">$27.99</span></p>
+            </div>
+          </div>
+          <div class="mt-4 bg-zinc-900 p-3 rounded-lg border border-zinc-800 text-xs">
+            <div class="flex justify-between font-bold text-white"><span>Loaded Boneless Wings</span><span class="text-pubGold">$11.99</span></div>
+            <p class="text-zinc-400">Cheese medley with bacon, scallions, tomatoes, drizzled with ranch and your choice of wing sauce.</p>
+          </div>
+        </div>
+
+        <!-- PIZZA -->
+        <div class="bg-pubCard border border-zinc-800 rounded-xl p-6">
+          <h3 class="text-xl font-bold text-pubGold mb-2"><i class="fa-solid fa-pizza-slice mr-2"></i>Pizza</h3>
+          <p class="text-xs text-zinc-400 italic mb-2">Made fresh for the best taste in town. No half toppings on 9". Only 13" & 16".</p>
+          <p class="text-xs text-pubGold font-bold mb-4">Add Cauliflower Crust to ANY 13" (Only) for $3.75 Extra</p>
+          
+          <div class="space-y-6 text-xs">
+            <!-- TRADITIONAL CRUST -->
+            <div>
+              <h4 class="font-bold text-white text-sm border-b border-zinc-800 pb-1 mb-2">Traditional Crust</h4>
+              <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                  <thead><tr class="text-pubGold border-b border-zinc-800"><th class="py-1">Type</th><th>9"</th><th>13"</th><th>16"</th></tr></thead>
+                  <tbody class="divide-y divide-zinc-800/50 text-zinc-300">
+                    <tr><td class="py-1 font-semibold text-white">Cheese</td><td>$9.50</td><td>$14.50</td><td>$17.99</td></tr>
+                    <tr><td class="py-1 font-semibold text-white">1 Topping</td><td>$10.00</td><td>$15.25</td><td>$19.50</td></tr>
+                    <tr><td class="py-1 font-semibold text-white">2 Topping</td><td>$10.50</td><td>$16.00</td><td>$20.50</td></tr>
+                    <tr><td class="py-1 font-semibold text-white">3 Topping</td><td>$10.99</td><td>$16.75</td><td>$22.50</td></tr>
+                    <tr><td class="py-1 font-semibold text-white">Deluxe <span class="text-[10px] text-zinc-500 font-normal block">(Pepperoni, sausage, red peppers, onion, mushrooms)</span></td><td>$13.99</td><td>$20.99</td><td>$25.99</td></tr>
+                    <tr><td class="py-1 font-semibold text-white">Meat Lover <span class="text-[10px] text-zinc-500 font-normal block">(Pepperoni, sausage, bacon, ham)</span></td><td>$13.99</td><td>$20.99</td><td>$25.99</td></tr>
+                    <tr><td class="py-1 font-semibold text-white">Taco <span class="text-[10px] text-zinc-500 font-normal block">(Lettuce, tomato, scallion, red pepper, jalapeño, olives)</span></td><td>$13.99</td><td>$20.99</td><td>$25.99</td></tr>
+                    <tr><td class="py-1 font-semibold text-white">Loaded Smashed Potato <span class="text-[10px] text-zinc-500 font-normal block">(Bacon, scallions, cheese blend, ranch)</span></td><td>$13.50</td><td colspan="2" class="text-zinc-500">Available in 9" Only</td></tr>
+                    <tr><td class="py-1 font-semibold text-white">Margarita <span class="text-[10px] text-zinc-500 font-normal block">(Spinach, tomato, onion, bacon, pesto, cheese)</span></td><td>$12.99</td><td colspan="2" class="text-zinc-500">Available in 9" Only</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- CHICAGO STYLE -->
+            <div>
+              <h4 class="font-bold text-white text-sm border-b border-zinc-800 pb-1 mb-2">Chicago Style Pizza (A Thick Crust)</h4>
+              <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                  <thead><tr class="text-pubGold border-b border-zinc-800"><th class="py-1">Type</th><th>9"</th><th>13"</th><th>16"</th></tr></thead>
+                  <tbody class="divide-y divide-zinc-800/50 text-zinc-300">
+                    <tr><td class="py-1 font-semibold text-white">1 Topping</td><td>$12.00</td><td>$17.25</td><td>$25.50</td></tr>
+                    <tr><td class="py-1 font-semibold text-white">2 Topping</td><td>$12.50</td><td>$17.75</td><td>$26.50</td></tr>
+                    <tr><td class="py-1 font-semibold text-white">3 Topping</td><td>$12.99</td><td>$19.25</td><td>$27.50</td></tr>
+                    <tr><td class="py-1 font-semibold text-white">Deluxe</td><td>$14.99</td><td>$23.99</td><td>$29.50</td></tr>
+                    <tr><td class="py-1 font-semibold text-white">Meat Lover</td><td>$14.99</td><td>$23.99</td><td>$29.50</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- SPECIALS PAGE -->
+  <main id="page-specials" class="page-content hidden grow">
+    <section class="py-12 max-w-7xl mx-auto px-4">
+      <div class="text-center mb-8">
+        <h2 class="text-3xl font-extrabold text-white">Featured Weekend Special</h2>
+      </div>
+      
+      <!-- PICTURE FEATURETTE CARD -->
+      <div class="max-w-xl mx-auto bg-pubCard border border-pubGold/40 rounded-2xl overflow-hidden shadow-gold-glow">
+        <div class="h-64 sm:h-72 w-full relative overflow-hidden bg-zinc-900 flex items-center justify-center">
+          <img src="photos/grouper.jpg" onerror="this.onerror=null;this.src='https://placehold.co/1200x800/141418/d4af37?text=Crab-Stuffed+Grouper';" alt="Crab-Stuffed Grouper" class="w-full h-full object-cover brightness-105 contrast-105"/>
+        </div>
+        <div class="p-6 border-t border-zinc-800">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-pubGold text-xs font-bold uppercase tracking-wider block">Chef's Featurette</span>
+            <span class="text-pubGold font-black text-xl">$21.99</span>
+          </div>
+          <h3 class="text-2xl font-extrabold text-white mb-2">Crab-Stuffed Grouper</h3>
+          <p class="text-zinc-300 text-xs sm:text-sm leading-relaxed mb-4">
+            Fresh fillet of grouper stuffed with rich lump crabmeat filling, pan-seared to perfection and served alongside savory southern collard greens and warm house cornbread.
+          </p>
+          <div class="flex items-center justify-between pt-3 border-t border-zinc-800/80">
+            <span class="text-zinc-400 text-xs italic"><i class="fa-solid fa-hat-chef text-pubGold mr-1"></i>Chef Joshua Timmerman</span>
+            <span class="text-[10px] text-zinc-500 font-semibold uppercase">Weekend Only • Limited Supply</span>
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-pubDark border-t border-zinc-800 py-4 text-center text-xs text-zinc-400 mt-auto">
+    <p>© Tolly's Gastropub — Greenville, OH | Owned & Operated by <strong class="text-pubGold font-semibold">Darby & Clay Longfellow</strong></p>
+  </footer>
+
+  <script>
+    function switchPage(p) {
+      document.querySelectorAll('.page-content').forEach(e => e.classList.add('hidden'));
+      document.getElementById('page-' + p).classList.remove('hidden');
+      document.querySelectorAll('.nav-btn').forEach(b => { b.classList.remove('text-pubGold', 'bg-pubCard', 'border', 'border-pubGold/30'); b.classList.add('text-zinc-400'); });
+      const a = document.getElementById('nav-' + p);
+      if(a) { a.classList.add('text-pubGold', 'bg-pubCard', 'border', 'border-pubGold/30'); a.classList.remove('text-zinc-400'); }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
 </body>
 </html>
